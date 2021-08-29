@@ -1,0 +1,5 @@
+**/package-lock.json
+**/.vscode
+**/.gradle/
+
+!build.gradle
