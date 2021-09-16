@@ -13,6 +13,8 @@ class LikeButton extends React.Compenent {
             return 'You liked this.';
         }
 
+
+        
     return e(
         'button',
         {onClick: () => this.ListeningStateChangedEvent({liked: true}) },
