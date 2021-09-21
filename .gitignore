@@ -1,5 +1,18 @@
-**/package-lock.json
 **/.vscode
 **/.gradle/
+*.project
+*.classpath
+*.class
+*.log
+**/.gradle/
+**/.settings/
+**/bin
+**/build
+**/temp/
+**/.vscode
+*.DS_Store
+**/node_modules
+**/package-lock.json
+**/aws.properties
 
 !build.gradle
