@@ -21,3 +21,14 @@
 > spring 설정방법
 >> 참조 : https://github.com/eomjinyoung/java106/blob/master/java106-docs/Gradle.md
 >> 명령어 : gradle init --type [프로젝트 타입] ==> gradle init --type java-application
+
+
+>> spring과 React에서 Date Communication 방법
+>> 1) 'Web Browser'에서 React 어플리케이션 URL 접속
+>> 2) 'Web Browser'에서 요청한 URL에 따라 'React-Router'에서 해당 URL에 해당하는 페이지의 내용을 렌더링 하는 최상위 Component를 부른다.
+>> 3) 'component'가 렌더링 시 'Service'에 미리 정의해둔 함수를 사용하여 데이터 가져온다
+>> 4) 'Service'에서는 axios 패키지의 기능을 사용하여 'Spring boot Api'와 http 통신을 주고 받는다.
+>> 5) React쪽의 Service 에서 요청한 http request를 'Rest Controller'에서 수신
+>> 6) 'Rest Controller'에서 'Service'를 호출하여 'React쪽의 'Service'에서 요청한 것'에 해당하는 기능을 수행
+>> 7) 'Service'에서 'Repository'를 호출하여 DB 처리
+>> 8) 'Repository'에서 DB 호출한다
