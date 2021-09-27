@@ -3,8 +3,10 @@ package com.board.back.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.board.back.exception.ResourceNotFoundException;
 import com.board.back.model.Board;
 import com.board.back.repository.BoardRepository;
 
@@ -21,5 +23,13 @@ public class BoardService {
     // 2) 생성
     public Board createBoard (Board board) {
         return boardRepository.save(board);
+    }
+
+    // 3) 상세보기
+    public ResponseEntity<Board> getBoard(int no) {
+        // TODO Auto-generated method stub
+        Board board = boardRepository.findById(no)
+                .orElseThrow(() -> new ResourceNotFoundException("Not exist Board Data by no : ["+no+"]"));
+        return ResponseEntity.ok(board);
     }
 }
