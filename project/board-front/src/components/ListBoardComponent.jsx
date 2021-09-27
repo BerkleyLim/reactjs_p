@@ -26,6 +26,11 @@ export default class ListBoardComponent extends Component {
         this.props.history.push('/create-board/');
     }
 
+    // 2-2) 글 제목 클릭 시 글 상세보기 이동하는 함수 정의
+    readBoard(no) {
+        this.props.history.push('/read-board/${no}');
+    }
+
     // 3) render() 함수의 내용이 실제 웹페이지에 표시
     //    maps() 함수를 사용하여 boards의 데이터 출력
     // createBoard : 글 작성 버튼 기능 활성화
@@ -57,7 +62,7 @@ export default class ListBoardComponent extends Component {
                                     board => 
                                     <tr key = {board.no}>
                                         <td> {board.no} </td>
-                                        <td> {board.title} </td>
+                                        <td> <a onClick = {() => this.readBoard(board.no)}>{board.title} </a></td>
                                         <td> {board.memberNo} </td>
                                         <td> {board.createdTime} </td>
                                         <td> {board.updatedTime} </td>

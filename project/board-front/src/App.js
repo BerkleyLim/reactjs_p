@@ -5,6 +5,7 @@ import ListBoardComponent from './components/ListBoardComponent';
 import HeaderComponent from './components/HeaderComponent';
 import FooterComponent from './components/FooterComponent';
 import CreateBoardComponent from './components/CreateBoardComponent';
+import ReadBoardComponent from './components/ReadBoardComponent';
 
 
 // 2) App() 함수의 최상위 컴포넌트
@@ -17,7 +18,8 @@ function App() {
             <Switch>
               <Route path="/" exact component = {ListBoardComponent}></Route>
               <Route path="/board" component = {ListBoardComponent}></Route>
-              <Route path = "/create-board" component = {CreateBoardComponent}></Route> 
+              <Route path="/create-board" component = {CreateBoardComponent}></Route> 
+              <Route path="/read-board/:no" component = {ReadBoardComponent}></Route>
             </Switch>
           </div>
         <FooterComponent />

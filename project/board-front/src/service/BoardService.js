@@ -15,6 +15,11 @@ class BoardService {
     createBoard(board) {
         return axios.post(BOARD_API_BASE_URL, board);
     }
+
+    // 5) 상세보기 함수, 경로 파라미터로 글 번호를 설정하여 통신
+    getOneBoard(no) {
+        return axios.get(BOARD_API_BASE_URL + "/" + no);
+    }
 }
 
 export default new BoardService();
