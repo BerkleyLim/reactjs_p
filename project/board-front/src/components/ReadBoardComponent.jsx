@@ -5,31 +5,33 @@ export default class ReadBoardComponent extends Component {
     constructor(props) {
         super(props);
 
-        // 글 상세보기에 사용될 파라미터 정의
         this.state = {
             no: this.props.match.params.no,
             board: {}
         }
+
+        this.goToUpdate = this.goToUpdate.bind(this);
+
     }
 
     // 페이지 로딩 시 API와 통신하여 글 객체 불려오기
     componentDidMount() {
         BoardService.getOneBoard(this.state.no).then ( res => {
             this.setState({board: res.data});
+            console.log("get result => " + JSON.stringify(res.data));
         });
     }
 
     // 파라미터 값의 따라 페이지에 표시할 내용 변경 (게시판 타입별로 표시를 다르게 한다)
     returnBoardType(typeNo) {
         let type = null;
-        if (typeNo == 1) {
+        if (typeNo === 1) {
             type = "자유게시판";
-        } else if (typeNo == 2) {
+        } else if (typeNo === 2) {
             type = "질문과 답변 게시판";
         } else {
             type = "타입 미지정";
         }
-
         return (
             <div className="row">
                 <label> Board Type : </label> {type}
@@ -47,7 +49,28 @@ export default class ReadBoardComponent extends Component {
 
     // 글 목록 이동
     goToList() {
-        this.props.history.props('/board');
+        this.props.history.push('/board');
+    }
+
+
+    goToUpdate = (event) => {
+        event.preventDefault();
+        this.props.history.push(`/create-board/${this.state.no}`);
+    }
+
+
+    deleteView = async function () {
+        if(window.confirm("정말로 글을 삭제하시겠습니까?\n삭제된 글은 복구 할 수 없습니다.")) {
+            BoardService.deleteBoard(this.state.no).then( res => {
+                console.log("delete result => "+ JSON.stringify(res));
+                if (res.status === 200) {
+                    this.props.history.push('/board');
+                } else {
+                    alert("글 삭제가 실패했습니다.");
+                }
+            });
+
+        }
     }
 
     render() {
@@ -73,6 +96,8 @@ export default class ReadBoardComponent extends Component {
 
                             {this.returnDate(this.state.board.createdTime, this.state.board.updatedTime) }
                             <button className="btn btn-primary" onClick={this.goToList.bind(this)} style={{marginLeft:"10px"}}>글 목록으로 이동</button>
+                            <button className="btn btn-info" onClick={this.goToUpdate} style={{marginLeft:"10px"}}>글 수정</button>
+                            <button className="btn btn-danger" onClick={() => this.deleteView()} style={{marginLeft:"10px"}}>글 삭제</button>
                     </div>
                 </div>
 

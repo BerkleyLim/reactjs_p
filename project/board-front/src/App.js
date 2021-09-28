@@ -10,6 +10,7 @@ import ReadBoardComponent from './components/ReadBoardComponent';
 
 // 2) App() 함수의 최상위 컴포넌트
 function App() {
+  // create-board 부분에서 글 작성 기능 or 글 수정 기능인지 구분하기 위해 :no 추가
   return (
     <div>
       <Router>
@@ -18,7 +19,7 @@ function App() {
             <Switch>
               <Route path="/" exact component = {ListBoardComponent}></Route>
               <Route path="/board" component = {ListBoardComponent}></Route>
-              <Route path="/create-board" component = {CreateBoardComponent}></Route> 
+              <Route path="/create-board:no" component = {CreateBoardComponent}></Route> 
               <Route path="/read-board/:no" component = {ReadBoardComponent}></Route>
             </Switch>
           </div>

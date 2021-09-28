@@ -20,6 +20,16 @@ class BoardService {
     getOneBoard(no) {
         return axios.get(BOARD_API_BASE_URL + "/" + no);
     }
+
+    // 6) 게시판 수정, 수정할 객체정보를 body에 담아 통신
+    updateBoard(no, board) {
+        return axios.put(BOARD_API_BASE_URL + "/" + no, board);
+    }
+
+    // 7) 글 수정 함수 추가 및 경로 파라미터로 글 번호를 설정, 글 번호에 해당하는 글 삭제
+    deleteBoared(no) {
+        return axios.delete(BOARD_API_BASE_URL + "/" + no);
+    }
 }
 
 export default new BoardService();

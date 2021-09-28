@@ -21,14 +21,14 @@ export default class ListBoardComponent extends Component {
         });
     }
 
-    // 2-1) 글 작성 버튼을 클릭 시 글 작성 페이지로 이동하게 해주는 함수 정의
+    // 2-1) 글 작성 버튼을 클릭 시 글 작성 페이지로 이동하게 해주는 함수 정의("_create" : 파라미터 추가 -> 게시판 추가/수정 구분을 짓기 위한 것)
     createBoard() {
-        this.props.history.push('/create-board/');
+        this.props.history.push('/create-board/_create');
     }
 
     // 2-2) 글 제목 클릭 시 글 상세보기 이동하는 함수 정의
     readBoard(no) {
-        this.props.history.push('/read-board/${no}');
+        this.props.history.push(`/read-board/${no}`);
     }
 
     // 3) render() 함수의 내용이 실제 웹페이지에 표시
@@ -43,7 +43,7 @@ export default class ListBoardComponent extends Component {
                     <button className="btn btn-primary" onClick={this.createBoard}> 글 작성</button>
                 </div>
 
-                <div className="row">
+                <div className ="row">
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
