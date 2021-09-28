@@ -52,7 +52,7 @@ public class BoardController {
     
     @DeleteMapping("/board/{no}")
     public ResponseEntity<Map<String, Boolean>> deleteBoardByNo(
-        @PathVariable Integer no) {
+        @PathVariable Integer no) { 
         return boardService.deleteBoard(no);
     }
     
