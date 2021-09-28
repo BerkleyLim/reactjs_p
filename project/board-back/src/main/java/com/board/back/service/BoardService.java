@@ -1,6 +1,9 @@
 package com.board.back.service;
 
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +34,31 @@ public class BoardService {
         Board board = boardRepository.findById(no)
                 .orElseThrow(() -> new ResourceNotFoundException("Not exist Board Data by no : ["+no+"]"));
         return ResponseEntity.ok(board);
+    }
+
+    // 4) 게시판 수정
+    public ResponseEntity<Board> updateBoard(Integer no, Board updateBoard) {
+        // TODO Auto-generated method stub
+        Board board = boardRepository.findById(no)
+                .orElseThrow(() -> new ResourceNotFoundException("Not exist Board Data by no : ["+no+"]"));
+        board.setType(updateBoard.getType());
+        board.setTitle(updateBoard.getTitle());
+        board.setContents(updateBoard.getContents());
+        board.setUpdatedTime(new Date(System.currentTimeMillis()));
+        
+        Board endUpdatedBoard = boardRepository.save(board);
+        return ResponseEntity.ok(endUpdatedBoard);
+    }
+
+    // 5) 게시판 삭제
+    public ResponseEntity<Map<String, Boolean>> deleteBoard(Integer no) {
+        // TODO Auto-generated method stub
+        Board board = boardRepository.findById(no)
+                .orElseThrow(() -> new ResourceNotFoundException("Not exist Board Data by no : ["+no+"]"));
+        
+        boardRepository.delete(board);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Deleted Board Data by id : ["+no+"]", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
