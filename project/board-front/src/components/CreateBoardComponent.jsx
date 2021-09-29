@@ -126,7 +126,7 @@ export default class CreateBoardComponent extends Component {
                                         value={this.state.memberNo} onChange={this.changeMemberNoHandler}/>
                                     </div>
                                     <button className="btn btn-success" onClick={this.createBoard}>Save</button>
-                     
+                                    <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft:"10px"}}>Cancel</button>
                                 </form>
                             </div>
                         </div>
