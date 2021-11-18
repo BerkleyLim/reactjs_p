@@ -11,6 +11,7 @@ export default class ListBoardComponent extends Component {
 
         // 1-1) 글 작성 버튼을 클릭 했을 때 동작하는 'createBoard' 함수를 바인드
         this.createBoard = this.createBoard.bind(this);
+        this.readBoard  = this.readBoard.bind(this);
     }
 
     // 2) 리액트 생명주기 메소드라고 하며, componentDidMount -> BoardService의 메소드 호출해서 데이터를 가져온다.\
